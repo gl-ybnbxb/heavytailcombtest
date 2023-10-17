@@ -13,7 +13,7 @@ qlcauchy(p)
 
 \item{x}{vector of quantiles}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)}
+\item{lower.tail}{logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}.}
 }
 \description{
 Distribution and quantile function for the log Cauchy distribution

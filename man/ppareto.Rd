@@ -15,7 +15,7 @@ qpareto(p, x_m = 1, alpha = 1)
 
 \item{alpha}{vectors of shape parameters}
 
-\item{lower.tail}{logical; if TRUE (default), probabilities are \code{P(X\leq x)}; otherwise, \code{P(X>x)}.}
+\item{lower.tail}{logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}.}
 
 \item{p}{vectors of probabilities}
 }

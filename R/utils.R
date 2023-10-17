@@ -9,7 +9,7 @@
 #' @param p vectors of probabilities
 #' @param x_m vectors of location parameters
 #' @param alpha vectors of shape parameters
-#' @param lower.tail logical; if TRUE (default), probabilities are \code{P(X\leq x)}; otherwise, \code{P(X>x)}.
+#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}.
 #'
 #' @export
 ppareto = function(x, x_m = 1, alpha = 1, lower.tail = T){
@@ -33,7 +33,7 @@ ppareto = function(x, x_m = 1, alpha = 1, lower.tail = T){
 #' @param p vectors of probabilities
 #' @param x_m vectors of location parameters
 #' @param alpha vectors of shape parameters
-#' @param lower.tail logical; if TRUE (default), probabilities are \code{P(X\leq x)}; otherwise, \code{P(X>x)}.
+#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}.
 #'
 #' @export
 qpareto = function(p, x_m = 1, alpha = 1){
@@ -54,7 +54,7 @@ qpareto = function(p, x_m = 1, alpha = 1){
 #' @param m vectors of location parameters
 #' @param s vectors of scale parameters
 #' @param alpha vectors of shape parameters
-#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
+#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}.
 #'
 #' @export
 pfrechet = function(x, m=0, s=1, alpha=1, lower.tail = T){
@@ -79,7 +79,7 @@ pfrechet = function(x, m=0, s=1, alpha=1, lower.tail = T){
 #' @param m vectors of location parameters
 #' @param s vectors of scale parameters
 #' @param alpha vectors of shape parameters
-#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
+#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}.
 #'
 #' @export
 qfrechet = function(p, m=0, s=1, alpha=1){
@@ -96,7 +96,7 @@ qfrechet = function(p, m=0, s=1, alpha=1){
 #' @usage qlcauchy(p)
 #' @param x vector of quantiles
 #' @param p vectors of probabilities
-#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
+#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}.
 #'
 #' @export
 plcauchy = function(x, lower.tail = T){
@@ -117,7 +117,7 @@ plcauchy = function(x, lower.tail = T){
 #' @usage qlcauchy(p)
 #' @param x vector of quantiles
 #' @param p vectors of probabilities
-#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
+#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}.
 #'
 #' @export
 qlcauchy = function(p){
@@ -135,7 +135,7 @@ qlcauchy = function(p){
 #' @usage qlcauchy(p)
 #' @param x vector of quantiles
 #' @param p vectors of probabilities
-#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
+#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}
 #'
 #' @export
 ptcauchy = function(x, threshold, lower.tail=T){
@@ -151,7 +151,7 @@ ptcauchy = function(x, threshold, lower.tail=T){
 #' @usage qlcauchy(p)
 #' @param x vector of quantiles
 #' @param p vectors of probabilities
-#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
+#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}
 #'
 #' @export
 qtcauchy = function(p, threshold){
