@@ -1,0 +1,13 @@
+Package: heavytailcombtest
+Type: Package
+Title: Aggregating Dependent Signals with Heavy-Tailed Combination Tests
+Version: 1.0.0
+Authors@R: person("Lin", "Gui", email = "glin6@uchicago.edu", role = c("aut", "cre"))
+Description: Provides (weighted) heavy-tailed combination test for global testing. Heavy-tailed        
+    distributions include Cauchy, Log Cauchy, Levy, Pareto, Frechet, t, and Inverse Gamma.
+Imports:
+    rmutil,
+    invgamma
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
