@@ -11,9 +11,9 @@
 #'
 #' @return a list of objects
 #' \describe{
-#' \item{p.mat}{the p-value matrix of size n * p where each column
+#' \item{p.mat}{the p-value matrix of size \code{n * p} where each column
 #' corresponding to one base hypothesis}
-#' \item{z.mat}{The corresponding base test statistics matrix of size n * p,
+#' \item{z.mat}{The corresponding base test statistics matrix of size \code{n * p},
 #' which are either z-scores or t-scores}
 #' }
 #'

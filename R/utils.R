@@ -1,7 +1,7 @@
 #' The Pareto Distribution
 #'
 #' @description Distribution and quantile function for the Pareto distribution
-#' with the location parameter equal to `x_m` and shape parameter equal to `alpha`.
+#' with the location parameter equal to \code{x_m} and shape parameter equal to \code{alpha}.
 #'
 #' @usage ppareto(x, x_m = 1, alpha = 1, lower.tail = T)
 #' @usage qpareto(p, x_m = 1, alpha = 1)
@@ -9,10 +9,9 @@
 #' @param p vectors of probabilities
 #' @param x_m vectors of location parameters
 #' @param alpha vectors of shape parameters
-#' @param lower.tail logical; if TRUE (default), probabilities are $P(X\leq x)$; otherwise, $P(X>x)$
+#' @param lower.tail logical; if TRUE (default), probabilities are \code{P(X\leq x)}; otherwise, \code{P(X>x)}.
 #'
 #' @export
-
 ppareto = function(x, x_m = 1, alpha = 1, lower.tail = T){
   if (lower.tail){
     y = 1-(x_m/x)^alpha
@@ -23,6 +22,20 @@ ppareto = function(x, x_m = 1, alpha = 1, lower.tail = T){
   return(y)
 }
 
+#' The Pareto Distribution
+#'
+#' @description Distribution and quantile function for the Pareto distribution
+#' with the location parameter equal to \code{x_m} and shape parameter equal to \code{alpha}.
+#'
+#' @usage ppareto(x, x_m = 1, alpha = 1, lower.tail = T)
+#' @usage qpareto(p, x_m = 1, alpha = 1)
+#' @param x vector of quantiles
+#' @param p vectors of probabilities
+#' @param x_m vectors of location parameters
+#' @param alpha vectors of shape parameters
+#' @param lower.tail logical; if TRUE (default), probabilities are \code{P(X\leq x)}; otherwise, \code{P(X>x)}.
+#'
+#' @export
 qpareto = function(p, x_m = 1, alpha = 1){
   y = x_m/(1-p)^(1/alpha)
   return(y)
@@ -32,7 +45,7 @@ qpareto = function(p, x_m = 1, alpha = 1){
 #' The Frechet Distribution
 #'
 #' @description Distribution and quantile function for the Frechet distribution
-#' with the location parameter equal to `m`, scale parameter equal to `s`, and shape parameter equal to `alpha`.
+#' with the location parameter equal to \code{m}, scale parameter equal to \code{s}, and shape parameter equal to \code{alpha}.
 #'
 #' @usage pfrechet(x, m=0, s=1, alpha=1, lower.tail = T)
 #' @usage qfrechet(p, m=0, s=1, alpha=1)
@@ -41,10 +54,9 @@ qpareto = function(p, x_m = 1, alpha = 1){
 #' @param m vectors of location parameters
 #' @param s vectors of scale parameters
 #' @param alpha vectors of shape parameters
-#' @param lower.tail logical; if TRUE (default), probabilities are $P(X\leq x)$; otherwise, $P(X>x)$
+#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
 #'
 #' @export
-
 pfrechet = function(x, m=0, s=1, alpha=1, lower.tail = T){
   if (lower.tail){
     y = exp(-((x-m)/s)^(-alpha))
@@ -55,6 +67,21 @@ pfrechet = function(x, m=0, s=1, alpha=1, lower.tail = T){
   return(y)
 }
 
+#' The Frechet Distribution
+#'
+#' @description Distribution and quantile function for the Frechet distribution
+#' with the location parameter equal to \code{m}, scale parameter equal to \code{s}, and shape parameter equal to \code{alpha}.
+#'
+#' @usage pfrechet(x, m=0, s=1, alpha=1, lower.tail = T)
+#' @usage qfrechet(p, m=0, s=1, alpha=1)
+#' @param x vector of quantiles
+#' @param p vectors of probabilities
+#' @param m vectors of location parameters
+#' @param s vectors of scale parameters
+#' @param alpha vectors of shape parameters
+#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
+#'
+#' @export
 qfrechet = function(p, m=0, s=1, alpha=1){
   m+s/(-log(p))^(1/alpha)
 }
@@ -64,13 +91,12 @@ qfrechet = function(p, m=0, s=1, alpha=1){
 #' The Log Cauchy Distribution
 #'
 #' @description Distribution and quantile function for the log Cauchy distribution
-#' with the location parameter equal to `m`, scale parameter equal to `s`, and shape parameter equal to `alpha`.
 #'
 #' @usage plcauchy(x, lower.tail = T)
 #' @usage qlcauchy(p)
 #' @param x vector of quantiles
 #' @param p vectors of probabilities
-#' @param lower.tail logical; if TRUE (default), probabilities are $P(X\leq x)$; otherwise, $P(X>x)$
+#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
 #'
 #' @export
 plcauchy = function(x, lower.tail = T){
@@ -83,7 +109,17 @@ plcauchy = function(x, lower.tail = T){
   return(y)
 }
 
-
+#' The Log Cauchy Distribution
+#'
+#' @description Distribution and quantile function for the log Cauchy distribution
+#'
+#' @usage plcauchy(x, lower.tail = T)
+#' @usage qlcauchy(p)
+#' @param x vector of quantiles
+#' @param p vectors of probabilities
+#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
+#'
+#' @export
 qlcauchy = function(p){
   y = exp(tan(pi*(p-0.5)))
   return(y)
@@ -94,12 +130,12 @@ qlcauchy = function(p){
 #' The truncated Cauchy Distribution
 #'
 #' @description Distribution and quantile function for the truncated Cauchy distribution
-#' with the trunacted threshold (lower bound) `threshold`
+#' with the trunacted threshold (lower bound) \code{threshold}
 #' @usage plcauchy(x, lower.tail = T)
 #' @usage qlcauchy(p)
 #' @param x vector of quantiles
 #' @param p vectors of probabilities
-#' @param lower.tail logical; if TRUE (default), probabilities are $P(X\leq x)$; otherwise, $P(X>x)$
+#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
 #'
 #' @export
 ptcauchy = function(x, threshold, lower.tail=T){
@@ -107,6 +143,17 @@ ptcauchy = function(x, threshold, lower.tail=T){
   (pcauchy(x)+pthreshold-1)/pthreshold
 }
 
+#' The truncated Cauchy Distribution
+#'
+#' @description Distribution and quantile function for the truncated Cauchy distribution
+#' with the trunacted threshold (lower bound) \code{threshold}
+#' @usage plcauchy(x, lower.tail = T)
+#' @usage qlcauchy(p)
+#' @param x vector of quantiles
+#' @param p vectors of probabilities
+#' @param lower.tail logical; if TRUE (default), probabilities are P(X\leq x); otherwise, P(X>x)
+#'
+#' @export
 qtcauchy = function(p, threshold){
   pthreshold = 1-pcauchy(threshold)
   qcauchy(pthreshold*p+1-pthreshold)
