@@ -1,4 +1,18 @@
-# cdf and quantile of the Pareto distribution
+#' The Pareto Distribution
+#'
+#' @description Distribution and quantile function for the Pareto distribution
+#' with the location parameter equal to `x_m` and shape parameter equal to `alpha`.
+#'
+#' @usage ppareto(x, x_m = 1, alpha = 1, lower.tail = T)
+#' @usage qpareto(p, x_m = 1, alpha = 1)
+#' @param x vector of quantiles
+#' @param p vectors of probabilities
+#' @param x_m vectors of location parameters
+#' @param alpha vectors of shape parameters
+#' @param lower.tail logical; if TRUE (default), probabilities are $P(X\leq x)$; otherwise, $P(X>x)$
+#'
+#' @export
+
 ppareto = function(x, x_m = 1, alpha = 1, lower.tail = T){
   if (lower.tail){
     y = 1-(x_m/x)^alpha
@@ -9,13 +23,28 @@ ppareto = function(x, x_m = 1, alpha = 1, lower.tail = T){
   return(y)
 }
 
-qpareto = function(x, x_m = 1, alpha = 1){
-  y = x_m/(1-x)^(1/alpha)
+qpareto = function(p, x_m = 1, alpha = 1){
+  y = x_m/(1-p)^(1/alpha)
   return(y)
 }
 
 
-# cdf and quantile function of the Frechet distribution
+#' The Frechet Distribution
+#'
+#' @description Distribution and quantile function for the Frechet distribution
+#' with the location parameter equal to `m`, scale parameter equal to `s`, and shape parameter equal to `alpha`.
+#'
+#' @usage pfrechet(x, m=0, s=1, alpha=1, lower.tail = T)
+#' @usage qfrechet(p, m=0, s=1, alpha=1)
+#' @param x vector of quantiles
+#' @param p vectors of probabilities
+#' @param m vectors of location parameters
+#' @param s vectors of scale parameters
+#' @param alpha vectors of shape parameters
+#' @param lower.tail logical; if TRUE (default), probabilities are $P(X\leq x)$; otherwise, $P(X>x)$
+#'
+#' @export
+
 pfrechet = function(x, m=0, s=1, alpha=1, lower.tail = T){
   if (lower.tail){
     y = exp(-((x-m)/s)^(-alpha))
@@ -26,13 +55,24 @@ pfrechet = function(x, m=0, s=1, alpha=1, lower.tail = T){
   return(y)
 }
 
-qfrechet = function(x, m=0, s=1, alpha=1){
-  m+s/(-log(x))^(1/alpha)
+qfrechet = function(p, m=0, s=1, alpha=1){
+  m+s/(-log(p))^(1/alpha)
 }
 
 
 
-#  cdf and quantile function of the log Cauchy distribution
+#' The Log Cauchy Distribution
+#'
+#' @description Distribution and quantile function for the log Cauchy distribution
+#' with the location parameter equal to `m`, scale parameter equal to `s`, and shape parameter equal to `alpha`.
+#'
+#' @usage plcauchy(x, lower.tail = T)
+#' @usage qlcauchy(p)
+#' @param x vector of quantiles
+#' @param p vectors of probabilities
+#' @param lower.tail logical; if TRUE (default), probabilities are $P(X\leq x)$; otherwise, $P(X>x)$
+#'
+#' @export
 plcauchy = function(x, lower.tail = T){
   if (lower.tail){
     y = atan(log(x))/pi+0.5
@@ -44,41 +84,31 @@ plcauchy = function(x, lower.tail = T){
 }
 
 
-qlcauchy = function(x){
-  y = exp(tan(pi*(x-0.5)))
+qlcauchy = function(p){
+  y = exp(tan(pi*(p-0.5)))
   return(y)
 }
 
-# don't do the full transformation to avoid NA
-
-lcauchy_mid= function(x){
-  tan(pi*(x-0.5))
-}
-plcauchy_mid = function(x){
-  0.5-atan(x)/pi
-}
-
-# the transformation of a z vector to a p value of the global test
-# input is a p-value vector
-# output is a global p-value
-lcauchy_trans= function(x, weights){
-  p = length(x)
-  trans_x = sapply(x,function(s) lcauchy_mid(1-s))
-  m = max(trans_x)
-  mid = m+log(sum(weights*exp(trans_x-m)))
-  p.lcauchy  = min(1,p*plcauchy_mid(mid))
-  
-  return(p.lcauchy)
-}
 
 
-# truncated Cauchy:
-# the threshold is for p-values:
-ptcauchy = function(x, pthreshold, lower.tail=T){
+#' The truncated Cauchy Distribution
+#'
+#' @description Distribution and quantile function for the truncated Cauchy distribution
+#' with the trunacted threshold (lower bound) `threshold`
+#' @usage plcauchy(x, lower.tail = T)
+#' @usage qlcauchy(p)
+#' @param x vector of quantiles
+#' @param p vectors of probabilities
+#' @param lower.tail logical; if TRUE (default), probabilities are $P(X\leq x)$; otherwise, $P(X>x)$
+#'
+#' @export
+ptcauchy = function(x, threshold, lower.tail=T){
+  pthreshold = 1-pcauchy(threshold)
   (pcauchy(x)+pthreshold-1)/pthreshold
 }
 
-qtcauchy = function(x, pthreshold){
-  qcauchy(pthreshold*x+1-pthreshold)
+qtcauchy = function(p, threshold){
+  pthreshold = 1-pcauchy(threshold)
+  qcauchy(pthreshold*p+1-pthreshold)
 }
 
