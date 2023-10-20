@@ -42,9 +42,8 @@ combination.test = function(p.vec, weights=NA,
     kappa = sum(weights)
     normalized_weights = weights/kappa
     if(truncate){
-      cauchy.threshold = qcauchy(1-truncate.threshold)
-      S = sum(normalized_weights*qtcauchy(p.vec, threshold=cauchy.threshold))
-      p.global = min(ptcauchy(S, threshold=cauchy.threshold, lower.tail = F),1)
+      S = sum(normalized_weights*tan((0.5-truncate.threshold*p.vec)*pi))
+      p.global = min(pcauchy(S,lower.tail = F)/truncate.threshold,1)
     }else{
       S = sum(normalized_weights*tan((0.5-p.vec)*pi))
       p.global = min(pcauchy(S,lower.tail = F),1)

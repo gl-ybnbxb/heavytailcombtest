@@ -125,37 +125,3 @@ qlcauchy = function(p){
   return(y)
 }
 
-
-
-#' The truncated Cauchy Distribution
-#'
-#' @description Distribution and quantile function for the truncated Cauchy distribution
-#' with the trunacted threshold (lower bound) \code{threshold}
-#' @usage plcauchy(x, lower.tail = T)
-#' @usage qlcauchy(p)
-#' @param x vector of quantiles
-#' @param p vectors of probabilities
-#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}
-#'
-#' @export
-ptcauchy = function(x, threshold, lower.tail=T){
-  pthreshold = 1-pcauchy(threshold)
-  (pcauchy(x)+pthreshold-1)/pthreshold
-}
-
-#' The truncated Cauchy Distribution
-#'
-#' @description Distribution and quantile function for the truncated Cauchy distribution
-#' with the trunacted threshold (lower bound) \code{threshold}
-#' @usage plcauchy(x, lower.tail = T)
-#' @usage qlcauchy(p)
-#' @param x vector of quantiles
-#' @param p vectors of probabilities
-#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P(X\le x)}; otherwise, \eqn{P(X>x)}
-#'
-#' @export
-qtcauchy = function(p, threshold){
-  pthreshold = 1-pcauchy(threshold)
-  qcauchy(pthreshold*p+1-pthreshold)
-}
-
