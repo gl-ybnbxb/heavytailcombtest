@@ -6,7 +6,7 @@
 #' @param method one of "Cauchy", "Log Cauchy", "Levy", "Paret", "Frechet", "t", or "Inverse Gamma", with the default "Cauchy".
 #' @param tail.idx is the shape parameter for Cauchy, Pareto, Frechet, t, and Inverse Gamma.
 #' @param truncate logical value, default is FALSE.
-#' If \code{truncate} is TRUE, then apply truncated Cauchy instead of standard Cauchy.
+#' If \code{truncate} is TRUE, then apply truncated Cauchy/t instead of standard Cauchy/t.
 #' @param truncate.threshold truncated threshold (upper bound) for the p-values when \code{truncate} is TRUE.
 #'
 #' @return a p-value for the global test
@@ -79,8 +79,13 @@ combination.test = function(p.vec, weights=NA,
 
   if(method == 't'){
     kappa = sum(weights^tail.idx)
-    S = sum(weights*qt(1-p.vec,df = tail.idx))
-    p.global = min(kappa*pt(S,df = tail.idx,lower.tail = F),1)
+    if(truncate){
+      S = sum(weights*qt(1-truncate.threshold*p.vec,df = tail.idx))
+      p.global = min(kappa*pt(S,df = tail.idx,lower.tail = F)/truncate.threshold,1)
+    }else{
+      S = sum(weights*qt(1-p.vec,df = tail.idx))
+      p.global = min(kappa*pt(S,df = tail.idx,lower.tail = F),1)
+    }
   }
 
   if(method == 'Inverse Gamma'){
