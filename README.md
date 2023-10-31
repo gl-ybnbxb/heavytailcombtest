@@ -13,6 +13,29 @@ install_github("gl-ybnbxb/heavytailcombtest")
 
 ## Example
 
+The `combination.test` takes in a base p-value vector and returns a global p-value. 
+
+### Simulate base p-values
+As an example, we simulate an one-sided p-value vector with the number of base hypotheses $= 5$ when the global null holds. The base test statistics are sampled from multivariate t with the location parameter $\mu=0$ and $\Sigma_\rho$ which has 1s on the diagonal and a common $\rho$ off the diagonal. Then, we apply the inverse gamma distribution with a shape parameter $2$ for the combination test. With a prior knowledge, we specify a weight vector for base hypotheses.
+```
+## Simulate a one-sided p-value vector of size 5 with 5 base hypotheses under the global null
+data <- data_Gen(n = 1, p = 5, mu = rep(0,5), rho = -0.2, copula = 't', one_sided = T)
+p.vec <- as.vector(data$p.mat)
+
+## Compute the global p-value using the Inverse Gamma combination test with a shape parameter 2
+p.global <- combination.test(p.vec, weights = 1:5, method = 'Inverse Gamma', tail.idx = 2)
+```
+
+### Truncated test
+When there are 1's in base p-values and we apply Cauchy/t combination test, a truncated Cauchy/t should be used. In this case, we need to choose `truncate=True` and pick a scaling upper bound `truncate.threshold` for all base p-values. The default value for `truncate.threshold` is 0.99.
+
+We provides an example using the truncated test as follows:
+```
+p.vec <- c(0,0,0,1,1)
+p.global <- combination.test(p.vec, method = 't', tail.idx = 2, truncate = T, truncate.threshold = 0.99)
+```
+
+
 
 ## Reference
 - Wilson, D. J. (2019). The harmonic mean p-value for combining dependent tests. Proceedings of the National Academy of Sciences, 116(4), 1195-1200.[[Link](https://www.pnas.org/doi/abs/10.1073/pnas.1814092116)]
