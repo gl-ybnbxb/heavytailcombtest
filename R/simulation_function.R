@@ -1,9 +1,11 @@
 #' Generate p-value matrix for simulation
 #'
+#' @description Generate p-value and base test statistics matrix for simulations.
+#' Each row corresponds to a base p-value vector from one sampling and each column represents p-values from one base hypothesis.
 #' @param n number of repeated times
 #' @param p number of base hypotheses
 #' @param mu a vector of possible values of effect size of nonnull individual
-#' hypotheses
+#' hypotheses. When \code{mu=(0,0,...,0)}, it's the global null.
 #' @param rho a common correlation between base hypotheses
 #' @param copula base test statistics from multivariate gaussian or multivariate t
 #' @param dof the degree of freedom of the multivariate t

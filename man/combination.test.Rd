@@ -2,7 +2,7 @@
 % Please edit documentation in R/combination_test.R
 \name{combination.test}
 \alias{combination.test}
-\title{Compute the global p-value using the heavy-tailed combination test.}
+\title{The main function for the heavy-tailed combination test}
 \usage{
 combination.test(
   p.vec,
@@ -17,27 +17,41 @@ combination.test(
 \item{p.vec}{an vector of base p-values. Missing values are allowed.}
 
 \item{weights}{an vector of non-negative weights for each base hypothesis.
-When it's missing, all hypotheses are assigned equal weights 1.}
+When it's missing, all hypotheses are assigned equal weights \code{1}.}
 
-\item{method}{one of "Cauchy", "Log Cauchy", "Levy", "Pareto", "Frechet", "t", or "Inverse Gamma", with the default "Cauchy".}
+\item{method}{one of \code{"Cauchy"}, \code{"Log Cauchy"}, \code{"Levy"}, \code{"Pareto"}, \code{"Frechet"}, \code{"t"}, or \code{"Inverse Gamma"}, with the default \code{"Cauchy"}.}
 
 \item{tail.idx}{is the shape parameter for Cauchy, Pareto, Frechet, t, and Inverse Gamma.}
 
-\item{truncate}{logical value, default is FALSE.
-If \code{truncate} is TRUE, then apply truncated Cauchy/t instead of standard Cauchy/t.}
+\item{truncate}{logical value, default is \code{FALSE}.
+If \code{truncate} is \code{TRUE}, then apply truncated Cauchy/t instead of standard Cauchy/t.}
 
-\item{truncate.threshold}{truncated threshold (upper bound) for the p-values when \code{truncate} is TRUE.}
+\item{truncate.threshold}{truncated threshold (upper bound) for the p-values when \code{truncate} is \code{TRUE}.}
 }
 \value{
 a p-value for the global test
 }
 \description{
-When the weights are not specified, all hypotheses are assigned equal weights 1 and the standard combination test is applied.
-When the \code{tail.idx=1} and all weights are normalized equal weights, i.e. the sum of the weights is 1, the average version of combination test is applied.
-Specifically, when \code{method='Cauchy'}, the Cauchy combination test is used. When \code{method='Pareto} and \code{tail.idx=1}, the harmonic mean p-value is returned.
+This function computes a global p-value using the heavy-tailed combination test.
+When the weights are not specified, all hypotheses are assigned equal weights \code{1} and the standard combination test is applied.
+When the \code{tail.idx=1} and all weights are normalized equal weights, i.e. the sum of the weights is \code{1}, the average version of combination test is applied.
+
+Specifically, when \code{method="Cauchy"}, the Cauchy combination test is used. When \code{method="Pareto"} and \code{tail.idx=1}, the harmonic mean p-value is returned.
+
+\code{truncate} and \code{truncate.thrrshold} are for \code{method="Cauchy"/"t"} to deal with occurrence of base p-value \code{1}.
+When \code{truncate} is \code{TRUE}, truncated Cauchy/t instead of standard Cauchy/t is implemented as the heavy-tailed distribution for the combination test.
+\code{truncate.thrshold} is the scaling upper bound chosen for the base p-values. Error will be raised if a base p-value 1 appears but \code{truncated=FALSE}.
 }
-\details{
-\code{truncate} and \code{truncate.thrrshold} are for \code{method='Cauchy'/'t'} to deal with occurrence of base p-value 1.
-When \code{truncate} is TRUE, truncated Cauchy/t instead of standard Cauchy/t is implemented as the heavy-tailed distribution for the combination test.
-\code{truncate.thrshold} is the scaling upper bound chosen for the base p-values.
+\examples{
+## Simulate a one-sided p-value vector of size 5 with 5 base hypotheses under the global null
+data <- data_Gen(n = 1, p = 5, mu = rep(0,5), rho = -0.2, copula = 'gaussian', one_sided = T)
+p.vec <- as.vector(data$p.mat)
+
+## Compute the global p-value using the Inverse Gamma combination test with a degree of freedom 2
+p.global <- combination.test(p.vec, method = 'Inverse Gamma', tail.idx = 2)
+
+## When special base p-value 1 occurs, apply truncated t
+p.vec <- c(0,0,0,1,1)
+p.global <- combination.test(p.vec, method = 't', tail.idx = 2, truncate = T, truncate.threshold = 0.99)
+
 }

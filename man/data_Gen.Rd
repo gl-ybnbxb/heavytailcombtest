@@ -12,7 +12,7 @@ data_Gen(n, p = 2, mu, rho = 0, copula = "gaussian", dof = 5, one_sided = F)
 \item{p}{number of base hypotheses}
 
 \item{mu}{a vector of possible values of effect size of nonnull individual
-hypotheses}
+hypotheses. When \code{mu=(0,0,...,0)}, it's the global null.}
 
 \item{rho}{a common correlation between base hypotheses}
 
@@ -32,5 +32,6 @@ which are either z-scores or t-scores}
 }
 }
 \description{
-Generate p-value matrix for simulation
+Generate p-value and base test statistics matrix for simulations.
+Each row corresponds to a base p-value vector from one sampling and each column represents p-values from one base hypothesis.
 }
