@@ -2,7 +2,7 @@
 % Please edit documentation in R/combination_test.R
 \name{combination.test}
 \alias{combination.test}
-\title{Compute the global p-value using the heavy-tailed combination test}
+\title{Compute the global p-value using the heavy-tailed combination test.}
 \usage{
 combination.test(
   p.vec,
@@ -17,14 +17,14 @@ combination.test(
 \item{p.vec}{an vector of base p-values. Missing values are allowed.}
 
 \item{weights}{an vector of non-negative weights for each base hypothesis.
-When it's missing, all hypotheses are assigned equal weights.}
+When it's missing, all hypotheses are assigned equal weights 1.}
 
-\item{method}{one of "Cauchy", "Log Cauchy", "Levy", "Paret", "Frechet", "t", or "Inverse Gamma", with the default "Cauchy".}
+\item{method}{one of "Cauchy", "Log Cauchy", "Levy", "Pareto", "Frechet", "t", or "Inverse Gamma", with the default "Cauchy".}
 
 \item{tail.idx}{is the shape parameter for Cauchy, Pareto, Frechet, t, and Inverse Gamma.}
 
 \item{truncate}{logical value, default is FALSE.
-If \code{truncate} is TRUE, then apply truncated Cauchy instead of standard Cauchy.}
+If \code{truncate} is TRUE, then apply truncated Cauchy/t instead of standard Cauchy/t.}
 
 \item{truncate.threshold}{truncated threshold (upper bound) for the p-values when \code{truncate} is TRUE.}
 }
@@ -32,5 +32,12 @@ If \code{truncate} is TRUE, then apply truncated Cauchy instead of standard Cauc
 a p-value for the global test
 }
 \description{
-Compute the global p-value using the heavy-tailed combination test
+When the weights are not specified, all hypotheses are assigned equal weights 1 and the standard combination test is applied.
+When the \code{tail.idx=1} and all weights are normalized equal weights, i.e. the sum of the weights is 1, the average version of combination test is applied.
+Specifically, when \code{method='Cauchy'}, the Cauchy combination test is used. When \code{method='Pareto} and \code{tail.idx=1}, the harmonic mean p-value is returned.
+}
+\details{
+\code{truncate} and \code{truncate.thrrshold} are for \code{method='Cauchy'/'t'} to deal with occurrence of base p-value 1.
+When \code{truncate} is TRUE, truncated Cauchy/t instead of standard Cauchy/t is implemented as the heavy-tailed distribution for the combination test.
+\code{truncate.thrshold} is the scaling upper bound chosen for the base p-values.
 }
