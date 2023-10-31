@@ -7,7 +7,8 @@ Description: Provides (weighted) heavy-tailed combination test for global testin
     distributions include Cauchy, Log Cauchy, Levy, Pareto, Frechet, t, and Inverse Gamma.
 Imports:
     rmutil,
-    invgamma
+    invgamma,
+    mvtnorm
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2

@@ -46,6 +46,7 @@ NULL
 #'
 #' @import invgamma
 #' @import rmutil
+#' @import mvtnorm
 #' @export
 
 
@@ -125,7 +126,6 @@ combination.test = function(p.vec, weights=NA, method = 'Cauchy', tail.idx = 1, 
 
   if(method == 'Inverse Gamma'){
     kappa = sum(weights^tail.idx)
-    require(invgamma)
     S = sum(weights*qinvgamma(1-p.vec,shape = tail.idx))
     p.global = min(kappa*pinvgamma(S,shape = tail.idx,lower.tail = F),1)
   }

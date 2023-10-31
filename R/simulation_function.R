@@ -26,7 +26,7 @@ data_Gen = function(n, p = 2,
                     mu, rho = 0,
                     copula = 'gaussian', dof = 5,
                     one_sided = F){
-  require(rmutil)
+
   z.mat = matrix(rnorm(n*p),nrow = n)
   Sigma = diag(p)
 
