@@ -1,4 +1,5 @@
 #' Compute the global p-value using the heavy-tailed combination test.
+#'
 #' When the weights are not specified, all hypotheses are assigned equal weights 1 and the standard combination test is applied.
 #' When the \code{tail.idx=1} and all weights are normalized equal weights, i.e. the sum of the weights is 1, the average version of combination test is applied.
 #' Specifically, when \code{method='Cauchy'}, the Cauchy combination test is used. When \code{method='Pareto} and \code{tail.idx=1}, the harmonic mean p-value is returned.
