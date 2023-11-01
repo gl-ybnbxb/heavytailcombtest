@@ -50,7 +50,7 @@ NULL
 #' @export
 
 
-combination.test = function(p.vec, weights=NA, method = 'Cauchy', tail.idx = 1, truncate = F, truncate.threshold = 0.99){
+combination.test = function(p.vec, weights=NA, method = 'Cauchy', tail.idx = 1, truncate = T, truncate.threshold = 0.9){
   # if the distribution is not in the list, raise error.
   if(!method %in% c('Cauchy','Log Cauchy','Levy',
                     'Pareto','Frechet','t','Inverse Gamma')){

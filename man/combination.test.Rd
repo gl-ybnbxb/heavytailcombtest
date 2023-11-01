@@ -9,8 +9,8 @@ combination.test(
   weights = NA,
   method = "Cauchy",
   tail.idx = 1,
-  truncate = F,
-  truncate.threshold = 0.99
+  truncate = T,
+  truncate.threshold = 0.9
 )
 }
 \arguments{
