@@ -1,6 +1,6 @@
 # heavytailcombtest
 
-This is an R package for global testing applying the heavy-tailed combination test. P-values are first transformed into heavy-tailed distributed variables and are then aggregated. Here we provide a function that users can perform heavy-tailed combination tests using a wide class of regularly varying tail distributions with different tail indexes. Specifically, distributions that we have implemented include t, left-truncated t, Pareto, Frechet, inverse Gamma, and Levy. We also allow users to provide pre-chosen weights and we also widely-applied [Cauchy combination test](https://www.tandfonline.com/doi/full/10.1080/01621459.2018.1554485) and [harmonic mean p-value](https://www.pnas.org/doi/abs/10.1073/pnas.1814092116). For details, please refer to [our paper](https://arxiv.org/abs/2310.20460). 
+This is an R package for global testing applying the heavy-tailed combination test. P-values are first transformed into heavy-tailed distributed variables and are then aggregated. Here we provide a function that users can perform heavy-tailed combination tests using a wide class of regularly varying tail distributions with different tail indexes. Specifically, distributions that we have implemented include t, left-truncated t, Pareto, Frechet, inverse Gamma, and Levy. We also allow users to provide pre-chosen weights and our method also include widely-applied [Cauchy combination test](https://www.tandfonline.com/doi/full/10.1080/01621459.2018.1554485) and [harmonic mean p-value](https://www.pnas.org/doi/abs/10.1073/pnas.1814092116). For details, please refer to [our paper](https://arxiv.org/abs/2310.20460). 
 
 As a practical guidance, our default setting is to use left-truncated t with tail index 1 (which is a left-truncated Cauchy distribution) as the transformation for the combination test, with the truncation threshold $p_0 = 0.9$. As suggested in the paper, to guarantee type-I error control in practice, the tail index should be no larger than $1$.
 
@@ -36,3 +36,15 @@ We can also apply other distributions, for example, the inverse Gamma distributi
 ```
 p.global <- combination.test(p.vec, weights = 1:5, method = 'Inverse Gamma', tail.idx = 1)
 ```
+
+### Compute the Cauchy combination test or the harmonic mean p-value
+To apply the Cauchy combination test using our code, select the student t distribution, tail index $1$ and weights as $1/n$ where $n$ is the number of individual hypotheses:
+```
+p.global <- combination.test(p.vec, weights = rep(1, 5)/5, method = 't', tail.idx = 1)
+```
+
+To apply the harmonic mean p-value using our code, select the Pareto distribution, tail index $1$ and weights as $1/n$ where $n$ is the number of individual hypotheses:
+```
+p.global <- combination.test(p.vec, weights = rep(1, 5)/5, method = 'pareto', tail.idx = 1)
+```
+
