@@ -18,11 +18,11 @@ chmod +x run_figures_s1.sh
 ```
 Then the plot will be automatically saved in this `error` folder.
 
-To reproduce Figure 3 and 4, first, use `power_simulation.R` to generate data frames containing power of different methods varying signal levels. The data frames will be saved in the `figure` folder as csv files. Then, use `figure_3_4.R`:
-- `summary_data` function computes the maximum power gain of each method over the Bonferroni's test. Example code below this function can aggregate powwer gain results under different settings.
+To reproduce Figure 3 and 4, first, use `power_simulations.R` to generate data frames containing power of different methods varying signal levels. The data frames will be saved in the `figure` folder as csv files. Then, use `figure_3_4.R`:
+- `summary_data` function computes the maximum power gain of each method over the Bonferroni's test. Example code below this function can aggregate power gain results under different settings.
 - `summary_power_plot` function generates Figure 3 and 4. Example code below this function can generate Figure 3 and 4 for Gaussian and t copla separately.
 
-To reproduce Figure S2,
+To reproduce Figure S2, first use example code in `power_simulations.R` to generate data frames containing power of different methods varying signal levels. The data frames will be saved in the `figure` folder as csv files. Then, use example code in `figure_s2.R` to generate each sub figure in Figure S2. 
 
 ## Tables
 
