@@ -89,14 +89,6 @@ combination.test = function(p.vec, weights=NA, method = 'Cauchy', tail.idx = 1, 
     p.global  = min(1,p*pcauchy(mid,lower.tail = F))
   }
 
-  if(method == 'Levy'){
-    tail.idx = 0.5
-    kappa = sum(weights^tail.idx)
-    require(rmutil)
-    S = sum(weights*qlevy(1-p.vec))
-    p.global = min(kappa*(1-plevy(S)),1)
-  }
-
   if(method == 'Pareto'){
     kappa = sum(weights^tail.idx)
     S = sum(weights*qpareto(1-p.vec, alpha = tail.idx))
@@ -128,6 +120,14 @@ combination.test = function(p.vec, weights=NA, method = 'Cauchy', tail.idx = 1, 
     kappa = sum(weights^tail.idx)
     S = sum(weights*qinvgamma(1-p.vec,shape = tail.idx))
     p.global = min(kappa*pinvgamma(S,shape = tail.idx,lower.tail = F),1)
+  }
+
+  if(method == 'Levy'){
+    tail.idx = 0.5
+    kappa = sum(weights^tail.idx)
+    require(rmutil)
+    S = sum(weights*qlevy(1-p.vec))
+    p.global = min(kappa*(1-plevy(S)),1)
   }
 
   return(p.global)
