@@ -40,7 +40,7 @@ p.global <- combination.test(p.vec, weights = 1:5, method = 'Inverse Gamma', tai
 ### Compute the Cauchy combination test or the harmonic mean p-value
 To apply the Cauchy combination test using our code, select the student t distribution, tail index $1$ and weights as $1/n$ where $n$ is the number of individual hypotheses:
 ```
-p.global <- combination.test(p.vec, weights = rep(1, 5)/5, method = 't', tail.idx = 1)
+p.global <- combination.test(p.vec, weights = rep(1, 5)/5, method = 't', truncate = F, tail.idx = 1)
 ```
 
 To apply the harmonic mean p-value using our code, select the Pareto distribution, tail index $1$ and weights as $1/n$ where $n$ is the number of individual hypotheses:
